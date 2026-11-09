@@ -1,0 +1,47 @@
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# Python caches and build files
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Datasets and prepared data (download separately, see docs/DATA.md)
+data/
+data_prepared/
+
+# Model weights and checkpoints (see docs/WEIGHTS.md)
+models/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+
+# Generated outputs, bundles, logs
+experiments/**/outputs/
+experiments/**/runs/
+experiments/**/checkpoints/
+experiments/**/bundle/
+experiments/**/logs/
+experiments/**/panels/
+results/
+*.zip
+*.rar
+*.tar
+*.tar.gz
+*.log
+
+# Project report: kept private for now (not part of the public repository)
+report/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

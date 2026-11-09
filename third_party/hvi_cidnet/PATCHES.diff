@@ -1,0 +1,102 @@
+--- third_party_src/HVI-CIDNet/net/CIDNet.py	2026-10-14 03:17:19
++++ third_party/hvi_cidnet/net/CIDNet.py	2026-10-14 03:21:01
+@@ -1,11 +1,11 @@
+ import torch
+ import torch.nn as nn
+-from net.HVI_transform import RGB_HVI
+-from net.transformer_utils import *
+-from net.LCA import *
+-from huggingface_hub import PyTorchModelHubMixin
++from .HVI_transform import RGB_HVI
++from .transformer_utils import *
++from .LCA import *
++# [phase3 patch] huggingface_hub mixin removed (Hub upload/download convenience only)
+ 
+-class CIDNet(nn.Module, PyTorchModelHubMixin):
++class CIDNet(nn.Module):  # [phase3 patch] was (nn.Module, PyTorchModelHubMixin)
+     def __init__(self, 
+                  channels=[36, 36, 72, 144],
+                  heads=[1, 2, 4, 8],
+--- third_party_src/HVI-CIDNet/net/LCA.py	2026-10-14 03:17:19
++++ third_party/hvi_cidnet/net/LCA.py	2026-10-14 03:21:01
+@@ -1,7 +1,7 @@
+ import torch
+ import torch.nn as nn
+ from einops import rearrange
+-from net.transformer_utils import *
++from .transformer_utils import *
+ 
+ # Cross Attention Block
+ class CAB(nn.Module):
+--- third_party_src/HVI-CIDNet/loss/losses.py	2026-10-14 03:17:19
++++ third_party/hvi_cidnet/loss/losses.py	2026-10-14 03:21:01
+@@ -1,8 +1,8 @@
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+-from loss.vgg_arch import VGGFeatureExtractor, Registry
+-from loss.loss_utils import *
++from .vgg_arch import VGGFeatureExtractor, Registry
++from .loss_utils import *
+ 
+ 
+ _reduction_modes = ['none', 'mean', 'sum']
+@@ -42,11 +42,12 @@
+     def __init__(self,loss_weight=1.0, reduction='mean'):
+         super(EdgeLoss, self).__init__()
+         k = torch.Tensor([[.05, .25, .4, .25, .05]])
+-        self.kernel = torch.matmul(k.t(),k).unsqueeze(0).repeat(3,1,1,1).cuda()
++        self.kernel = torch.matmul(k.t(),k).unsqueeze(0).repeat(3,1,1,1)  # [phase3 patch] was .cuda(); moved to input device in conv_gauss
+ 
+         self.weight = loss_weight
+         
+     def conv_gauss(self, img):
++        self.kernel = self.kernel.to(img.device, img.dtype)  # [phase3 patch] device-agnostic
+         n_channels, _, kw, kh = self.kernel.shape
+         img = F.pad(img, (kw//2, kh//2, kw//2, kh//2), mode='replicate')
+         return F.conv2d(img, self.kernel, groups=n_channels)
+--- third_party_src/HVI-CIDNet/loss/vgg_arch.py	2026-10-14 03:17:19
++++ third_party/hvi_cidnet/loss/vgg_arch.py	2026-10-14 03:21:18
+@@ -178,12 +178,16 @@
+             if idx > max_idx:
+                 max_idx = idx
+ 
+-        if os.path.exists(VGG_PRETRAIN_PATH):
+-            vgg_net = getattr(vgg, vgg_type)(pretrained=False)
+-            state_dict = torch.load(VGG_PRETRAIN_PATH, map_location=lambda storage, loc: storage)
+-            vgg_net.load_state_dict(state_dict)
++        # [phase3 patch] was: local VGG_PRETRAIN_PATH if present, else getattr(vgg, vgg_type)(pretrained=True).
++        # Same ImageNet weights via the non-deprecated torchvision API (vgg19 -> VGG19_Weights.IMAGENET1K_V1,
++        # file vgg19-dcbb9e9d.pth, hash-checked by torchvision). PHASE3_VGG_RANDOM_INIT=1 (CPU unit tests only)
++        # builds the identical architecture with random weights so tests never download anything.
++        if os.environ.get('PHASE3_VGG_RANDOM_INIT') == '1':
++            vgg_net = getattr(vgg, vgg_type)(weights=None)
++        elif vgg_type == 'vgg19':
++            vgg_net = vgg.vgg19(weights=vgg.VGG19_Weights.IMAGENET1K_V1)
+         else:
+-            vgg_net = getattr(vgg, vgg_type)(pretrained=True)
++            raise ValueError(f'[phase3 patch] only vgg19 is supported, got {vgg_type}')
+ 
+         features = vgg_net.features[:max_idx + 1]
+ 
+@@ -199,7 +203,7 @@
+             else:
+                 modified_net[k] = v
+ 
+-        self.vgg_net = nn.Sequential(modified_net).cuda()
++        self.vgg_net = nn.Sequential(modified_net)  # [phase3 patch] was .cuda()
+ 
+         if not requires_grad:
+             self.vgg_net.eval()
+@@ -212,9 +216,9 @@
+ 
+         if self.use_input_norm:
+             # the mean is for image with range [0, 1]
+-            self.register_buffer('mean', torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1).cuda())
++            self.register_buffer('mean', torch.Tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1))  # [phase3 patch] was .cuda()
+             # the std is for image with range [0, 1]
+-            self.register_buffer('std', torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1).cuda())
++            self.register_buffer('std', torch.Tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1))  # [phase3 patch] was .cuda()
+ 
+     def forward(self, x):
+         """Forward function.

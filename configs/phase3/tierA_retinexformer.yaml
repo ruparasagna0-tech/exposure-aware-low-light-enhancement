@@ -1,0 +1,57 @@
+# Phase 3 / Stage 1 Tier A: Retinexformer (ICCV 2023), official LOL-v2 config n_feat 40 / stage 1 / blocks [1,2,2]; L1.
+# Generated from configs/generalized_lol_v2.yaml: data, splits, sampler (2+2), crop 256, hflip, seed 42,
+# 112 steps x 50 epochs and eval settings are IDENTICAL. Changed: experiment_name, model, loss, train
+# (optimizer/schedule come from src/phase3/schedules.py RECIPES), output.dir.
+experiment_name: phase3_tierA_retinexformer
+seed: 42
+data:
+  root: data_prepared/phase2
+  lol_v2_dir: LOL-v2
+  sice_dir: SICE
+  loli_dir: LoLI-Street
+  crop_size: 256
+  hflip: true
+  vflip: false
+splits:
+  dir: experiments/generalized_lol_v2/splits
+  real:
+    corr_threshold: 0.85
+    thumb_size:
+    - 96
+    - 64
+    n_val_scenes: 25
+    seed: 42
+  synthetic:
+    corr_threshold: 0.95
+    thumb_size:
+    - 64
+    - 64
+    n_val_scenes: 89
+    seed: 42
+sampler:
+  per_domain: 2
+  steps_per_epoch: 112
+model:
+  name: retinexformer
+loss:
+  name: l1
+train:
+  epochs: 50
+  batch_size: 4
+  scheduler: recipe
+  num_workers: 2
+  device: auto
+  deterministic: true
+  log_every: 28
+  selection_metric: mean_val_psnr
+  amp: pilot_gated
+eval:
+  quantize: true
+  lpips_net: alex
+  sice:
+    min_brightness: 5.0
+    tile: 512
+    overlap: 64
+  qualitative_per_domain: 4
+output:
+  dir: experiments/phase3_model_selection/stage1/runs/tierA_retinexformer_s42

@@ -1,0 +1,78 @@
+{
+ "decision": "calibration reference re-anchored to the original Phase-2 trainer measured in the current Colab session",
+ "approved_by": "project owner (explicit approval, Option 1)",
+ "date": "2026-10-14",
+ "is_pass_under_original_september_reference": false,
+ "tolerance": 0.3,
+ "tolerance_changed": false,
+ "september_baseline": {
+  "median_epoch_s": 15.1,
+  "total_50_epochs_s": 757.8,
+  "torch": "2.11.0+cu128",
+  "python": "3.13.15",
+  "gpu": "Tesla T4",
+  "source": "experiments/phase3_model_selection/stage0/source_phase2/history.json",
+  "source_md5": "10debcea1c0fe82d41f4d8426dedfa4d"
+ },
+ "original_pilot_result_vs_september": {
+  "ratio": 1.38,
+  "pass": false,
+  "source": "Drive: experiments/phase3_model_selection/stage1/pilots/pilot_20261014_0026/setup/P1_calibration.json"
+ },
+ "current_session_reference": {
+  "trainer": "scripts/train_generalized.py",
+  "trainer_md5": "41f8d805c9e5bfdc837cc9472de3f5c5",
+  "config_md5": "7326edc089669cdd43fbfe92889769f8",
+  "epochs_time_s": [
+   20.8,
+   20.4,
+   20.7
+  ],
+  "steady_median_epoch_s": 20.55,
+  "steady_median_train_s_derived": 13.39,
+  "steady_median_val_s_derived": 7.15,
+  "projected_50_epochs_s": 1027.7,
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0",
+  "cudnn": 92700,
+  "gpu": "Tesla T4",
+  "boot_id": "7fc505c0-c1c8-4088-abfa-20c19c8eebf0",
+  "reproduced_september_log_exactly": true,
+  "source": "Drive: experiments/phase3_model_selection/stage1/pilots/phase2_trainer_timing_20261014_003632/summary.json"
+ },
+ "pilot_p1_same_session": {
+  "steady_median_epoch_s": 20.868,
+  "train_s": 13.5915,
+  "val_s": 7.2765,
+  "projected_50_epochs_s": 1045.4
+ },
+ "reanchored_calibration": {
+  "ratio_epoch": 1.016,
+  "ratio_projection": 1.017,
+  "pass": true,
+  "basis": "explicitly approved reference change"
+ },
+ "environment_slowdown_vs_september": {
+  "approx_factor": 1.36,
+  "root_cause_proven": false,
+  "known_difference": "PyTorch build +cu128 (September) vs +cu130 (October)"
+ },
+ "accepted_practical_runtime_s_per_epoch": 21,
+ "new_vm_reference_20261018": {
+  "boot_id": "f79b313b-6d4c-4100-a2a8-857faf42961d",
+  "epochs_time_s": [
+   22.9,
+   20.7,
+   21.4
+  ],
+  "steady_median_epoch_s": 21.05,
+  "steady_median_train_s_derived": 13.68,
+  "steady_median_val_s_derived": 7.37,
+  "projected_50_epochs_s": 1054.3,
+  "ratio_vs_september": 1.391,
+  "ratio_vs_previous_vm_reference": 1.024,
+  "cell_used": "phase2_trainer_timing_cell.py (v1, by mistake; identical measurement procedure)",
+  "label_correction": "summary.json field pilot_P1_same_session refers to the previous VM (7fc505c0...); its ratio 1.009 is cross-VM",
+  "decision": "Option 1, choice delegated to the assistant by the project owner"
+ }
+}

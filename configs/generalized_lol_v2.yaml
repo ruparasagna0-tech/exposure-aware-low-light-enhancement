@@ -1,0 +1,71 @@
+# Phase 2 — first generalized experiment.
+# ONE baseline U-Net trained on LOL-v2-real Train + LOL-v2-synthetic Train with explicit
+# 50/50 domain batches; validation = scene-disjoint subsets of those Train sets;
+# seen-domain test = official LOL-v2 Test sets; unseen-domain test = SICE (58 official
+# test sequences) and LoLI-Street Val. LOL-v1 is NOT used (overlaps LOL-v2-real).
+# Relative paths are resolved from the project root.
+
+experiment_name: generalized_lol_v2
+seed: 42
+
+data:
+  root: data_prepared/phase2        # prepared by scripts/prepare_phase2_data.py (override: --data-root)
+  lol_v2_dir: LOL-v2
+  sice_dir: SICE
+  loli_dir: LoLI-Street
+  crop_size: 256                    # paired random crop (train only)
+  hflip: true
+  vflip: false
+
+splits:                             # scene-disjoint validation carved from official Train only
+  dir: experiments/generalized_lol_v2/splits
+  real:
+    corr_threshold: 0.85
+    thumb_size: [96, 64]
+    n_val_scenes: 25
+    seed: 42
+  synthetic:
+    corr_threshold: 0.95
+    thumb_size: [64, 64]
+    n_val_scenes: 89
+    seed: 42
+
+sampler:
+  per_domain: 2                     # every batch = 2 real + 2 synthetic
+  steps_per_epoch: 112              # 112 x 50 = 5,600 optimizer steps (same as LOL-v1 baseline)
+
+model:                              # identical to the LOL-v1 baseline
+  name: baseline_unet
+  in_channels: 3
+  out_channels: 3
+  base_channels: 32
+  depth: 3
+
+loss:
+  name: l1
+
+train:
+  epochs: 50
+  batch_size: 4                     # must equal 2 * sampler.per_domain
+  optimizer: adam
+  learning_rate: 0.0002
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+  scheduler: none
+  num_workers: 2
+  device: auto                      # auto = cuda > mps > cpu
+  deterministic: true
+  log_every: 28
+  selection_metric: mean_val_psnr   # (real_val_PSNR + synthetic_val_PSNR) / 2
+
+eval:
+  quantize: true                    # final test metrics on 8-bit-rounded outputs (as LOL-v1 baseline)
+  lpips_net: alex
+  sice:
+    min_brightness: 5.0             # darkest exposure with mean gray level >= 5 (0-255)
+    tile: 512
+    overlap: 64
+  qualitative_per_domain: 4
+
+output:
+  dir: experiments/generalized_lol_v2   # checkpoints/, logs/, evaluation/, splits/, history.json, config.yaml

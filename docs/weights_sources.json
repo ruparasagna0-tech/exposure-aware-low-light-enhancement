@@ -1,0 +1,69 @@
+{
+ "downloaded": "2026-11-08",
+ "note": "All files load strict=True into the vendored code (third_party/hvi_cidnet, third_party/retinexformer, third_party/iat). .pth files are loaded with torch.load(weights_only=True). Existing checkpoints were not touched.",
+ "files": {
+  "hvi_cidnet_lolv2_real_bestPSNR/model.safetensors": {
+   "source": "https://huggingface.co/Fediory/HVI-CIDNet-LOLv2-real-bestPSNR",
+   "revision": "c317f57dec7dd66704ac1b13789a2fa5f20746de",
+   "licence": "MIT (HF model card; GitHub Fediory/HVI-CIDNet)",
+   "bytes": 7920332,
+   "md5": "f5ee3e155015f07434c7850c3d2e20f9",
+   "sha256": "f03da46e8dd7181a872ac70e56dcf5847ea33d2bed2a73ff25beb0c82863bac8",
+   "strict_load": "all keys matched"
+  },
+  "hvi_cidnet_lolv2_syn_wperc/model.safetensors": {
+   "source": "https://huggingface.co/Fediory/HVI-CIDNet-LOLv2-syn-wperc",
+   "revision": "001d9216ffe61218010739e8412f9d12aec3a685",
+   "licence": "MIT (HF model card)",
+   "bytes": 7920332,
+   "md5": "b43c7af3a29099977eadb9b417f02988",
+   "sha256": "aafd2a73dae9770bbdc7ddff70f1acbd88f846a7316e7936dc0f09b01ca39780",
+   "strict_load": "all keys matched"
+  },
+  "hvi_cidnet_generalization/model.safetensors": {
+   "source": "https://huggingface.co/Fediory/HVI-CIDNet-Generalization",
+   "revision": "51481ef2546f870060c43eb6d6525399f5b3d2d3",
+   "licence": "MIT (HF model card)",
+   "bytes": 7920332,
+   "md5": "8653111a12efa0e2ea86e731282ceabf",
+   "sha256": "2291407125e809cc9c0614cc2d010d21d309a66eb3da33e1ee2386a68fa05894",
+   "strict_load": "all keys matched"
+  },
+  "retinexformer_lolv2_real/LOL_v2_real.pth": {
+   "source": "https://huggingface.co/CaiYuanhao/Retinexformer",
+   "revision": "51d9f18d5bd8fefc85d9dabf95caf2fa2a5f2018",
+   "licence": "MIT (GitHub caiyuanhao1998/Retinexformer; HF card has no licence field)",
+   "bytes": 6478393,
+   "md5": "6738bd02171824d9843b6dfa5f0d0f0f",
+   "sha256": "539bd16c4da6179e45616329f249c4672951b1045193428e1d042c50d4b65a0b",
+   "strict_load": "all keys matched"
+  },
+  "retinexformer_lolv2_syn/LOL_v2_synthetic.pth": {
+   "source": "https://huggingface.co/CaiYuanhao/Retinexformer",
+   "revision": "51d9f18d5bd8fefc85d9dabf95caf2fa2a5f2018",
+   "licence": "MIT (GitHub); downloaded for the planned second backbone, not used in the diagnostic",
+   "bytes": 6478393,
+   "md5": "12bc491f46478fe23479e0627d2cb8af",
+   "sha256": "2f793853c6b1ba0b4a3ff12b7b10f0f2c851eaefda1006437eb3f35229838c4a",
+   "strict_load": "all keys matched"
+  },
+  "iat_lol/best_Epoch_lol.pth": {
+   "source": "https://github.com/cuiziteng/Illumination-Adaptive-Transformer (IAT_enhance/best_Epoch_lol.pth)",
+   "revision": "c76472265247f47cea57649af28b15018bb64cb1",
+   "licence": "Apache-2.0",
+   "bytes": 427160,
+   "md5": "23d508f28a9756a0a00581aef802fcdc",
+   "sha256": "9564b7e10882e688ac817ae6fd164544d05b9f74232de56c33ed7f9dabf7bdc4",
+   "strict_load": "all keys matched"
+  },
+  "iat_exposure/best_Epoch_exposure.pth": {
+   "source": "https://github.com/cuiziteng/Illumination-Adaptive-Transformer (IAT_enhance/best_Epoch_exposure.pth)",
+   "revision": "c76472265247f47cea57649af28b15018bb64cb1",
+   "licence": "Apache-2.0",
+   "bytes": 427160,
+   "md5": "df92a0ab8dcea657cdc83b419d74c846",
+   "sha256": "15a9494582f028bef996d4af7145860eaa5d67799d2b0625ed93ff8c546ea3ee",
+   "strict_load": "all keys matched"
+  }
+ }
+}

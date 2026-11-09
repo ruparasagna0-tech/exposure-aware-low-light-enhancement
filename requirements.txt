@@ -1,0 +1,9 @@
+# Core requirements (same pins as the original requirements.txt + requirements-phase3.txt)
+torch>=2.2
+torchvision>=0.17
+Pillow>=10.0
+numpy>=1.26
+matplotlib>=3.8
+PyYAML>=6.0
+lpips>=0.1.4
+einops==0.8.0

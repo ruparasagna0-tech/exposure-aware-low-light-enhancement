@@ -1,0 +1,74 @@
+LOL-v1 vs LOL-v2 overlap audit (READ-ONLY)
+======================================================================
+
+ZIP structure:
+  LOL-v2/Real_captured/Test/Low: 100
+  LOL-v2/Real_captured/Test/Normal: 100
+  LOL-v2/Real_captured/Train/Low: 689
+  LOL-v2/Real_captured/Train/Normal: 689
+  LOL-v2/Synthetic/Test/Low: 100
+  LOL-v2/Synthetic/Test/Normal: 100
+  LOL-v2/Synthetic/Train/Low: 900
+  LOL-v2/Synthetic/Train/Normal: 900
+  junk entries: 0
+
+Exact overlap (unique images, decoded-pixel MD5):
+  source         target                             src hit src tot   %src tgt hit tgt tot   %tgt
+  our485/low     LOL-v2-real Train/Low                  399     485  82.3%     399     689  57.9%
+  our485/low     LOL-v2-real Test/Low                    86     485  17.7%      86     100  86.0%
+  our485/low     LOL-v2-synthetic Train+Test/Low+Normal       0     485   0.0%       0    2000   0.0%
+  our485/high    LOL-v2-real Train/Normal               398     485  82.1%     417     689  60.5%
+  our485/high    LOL-v2-real Test/Normal                 85     485  17.5%      91     100  91.0%
+  our485/high    LOL-v2-synthetic Train+Test/Low+Normal       0     485   0.0%       0    2000   0.0%
+  eval15/low     LOL-v2-real Train/Low                   12      15  80.0%      12     689   1.7%
+  eval15/low     LOL-v2-real Test/Low                     3      15  20.0%       3     100   3.0%
+  eval15/low     LOL-v2-synthetic Train+Test/Low+Normal       0      15   0.0%       0    2000   0.0%
+  eval15/high    LOL-v2-real Train/Normal                 0      15   0.0%       0     689   0.0%
+  eval15/high    LOL-v2-real Test/Normal                  0      15   0.0%       0     100   0.0%
+  eval15/high    LOL-v2-synthetic Train+Test/Low+Normal       0      15   0.0%       0    2000   0.0%
+
+Totals:
+  v1_images_total: 1000
+  v1_images_with_exact_copy_in_v2_real: 983
+  v1_low_exact: 500
+  v1_high_exact: 483
+  v1_pairs_total: 500
+  v1_pairs_whose_scene_is_in_v2_real: 500
+  v2_real_images_total: 1578
+  v2_real_images_exactly_equal_to_some_v1_image: 1008
+  v2_real_pairs_total: 789
+  v2_real_pairs_sharing_scene_with_v1: 586
+  v2_real_pairs_clean: {'Train': 194, 'Test': 9}
+  v2_real_clean_test_pairs_scene_independent_of_clean_train: 9
+  scenes_total_real: 295
+
+Scene-level (real 600x400; threshold 0.95; different-scene corr p99 = 0.474):
+  LOL-v1:train450      pairs  450  scenes  230
+  LOL-v1:val35         pairs   35  scenes   34
+  LOL-v1:eval15        pairs   15  scenes   14
+  LOL-v2-real:Train    pairs  689  scenes  252
+  LOL-v2-real:Test     pairs  100  scenes   43
+  pairs of A whose scene also occurs in B:
+                        train450     val35    eval15     Train      Test
+  LOL-v1:train450              -        53        24       367        83
+  LOL-v1:val35                30         -         0        32         3
+  LOL-v1:eval15               14         0         -        12         3
+  LOL-v2-real:Train          484        97        35         -         0
+  LOL-v2-real:Test            91         6         8         0         -
+  borderline cross-scene links in [0.8, 0.95): 132  top: [(0.9318064460304598, 'LOL-v1:train450:482.png', 'LOL-v2-real:Train:481'), (0.9318064460304598, 'LOL-v1:train450:481.png', 'LOL-v2-real:Train:482'), (0.9318064460304598, 'LOL-v1:train450:481.png', 'LOL-v1:train450:482.png'), (0.9318064460304595, 'LOL-v2-real:Train:481', 'LOL-v2-real:Train:482'), (0.8977251256735873, 'LOL-v2-real:Train:475', 'LOL-v2-real:Train:476')]
+
+Alignment of overlapping pairs:
+  overlapping_pairs: 500
+  v2_id_equals_v1_number: 500
+  high_exact: 483
+  best_shift_zero: 500
+  same_scene: 500
+  non_exact_high: [('our485/522.png', 'normal00522.png', 27.47), ('our485/735.png', 'normal00735.png', 34.51), ('eval15/1.png', 'normal00001.png', 27.32), ('eval15/22.png', 'normal00022.png', 32.4), ('eval15/23.png', 'normal00023.png', 31.77), ('eval15/55.png', 'normal00055.png', 31.18), ('eval15/79.png', 'normal00079.png', 39.0), ('eval15/111.png', 'normal00111.png', 35.25), ('eval15/146.png', 'normal00146.png', 30.25), ('eval15/179.png', 'normal00179.png', 24.61), ('eval15/493.png', 'normal00493.png', 28.44), ('eval15/547.png', 'normal00547.png', 35.7), ('eval15/665.png', 'normal00665.png', 30.24), ('eval15/669.png', 'normal00669.png', 30.84), ('eval15/748.png', 'normal00748.png', 31.53), ('eval15/778.png', 'normal00778.png', 27.51), ('eval15/780.png', 'normal00780.png', 29.71)]
+
+Synthetic:
+  sizes: [(384, 384)]
+  exact_matches_with_v1_images: 0
+  top10_corr_v1_vs_synthetic: [(0.9208858514163041, 'our485/high/254.png', 'LOL-v2/Synthetic/Train/Low/r1023c21et.png'), (0.9196614851460162, 'our485/low/254.png', 'LOL-v2/Synthetic/Train/Low/r10a9ca2at.png'), (0.8690371250629825, 'our485/low/578.png', 'LOL-v2/Synthetic/Train/Low/r0a8e5f8at.png'), (0.8656991781098153, 'our485/low/745.png', 'LOL-v2/Synthetic/Train/Low/r0cc5a33ct.png'), (0.8629410012551647, 'our485/low/746.png', 'LOL-v2/Synthetic/Train/Low/r0cc5a33ct.png'), (0.862446330698092, 'our485/high/746.png', 'LOL-v2/Synthetic/Train/Low/r0cc5a33ct.png'), (0.862446330698092, 'our485/high/745.png', 'LOL-v2/Synthetic/Train/Low/r0cc5a33ct.png'), (0.8509397339967716, 'our485/high/578.png', 'LOL-v2/Synthetic/Train/Low/r0a8e5f8at.png'), (0.8486623833244046, 'our485/low/719.png', 'LOL-v2/Synthetic/Train/Low/r179bb406t.png'), (0.8482641029632064, 'our485/low/718.png', 'LOL-v2/Synthetic/Train/Low/r179bb406t.png')]
+  train_test_shared_reference_exact: 0
+  test_pairs_with_train_scene_corr_ge_thr: 0
+  internal_duplicate_references: 6

@@ -1,0 +1,87 @@
+LoLI-Street structure + overlap audit (READ-ONLY; read from ZIP in memory)
+========================================================================
+
+File: <project-root>/data/LoLI-Street/archive (3).zip (2.82 GB); other files in dir: ['.DS_Store']
+Integrity: {'testzip_first_bad_member': None, 'members': 133004, 'dir_entries': 0, 'uncompressed_bytes': 2824788499, 'compress_types': {8: 133004}}
+Root folder: LoLI-Street Dataset
+
+Folders (file counts):
+  Test: 1000
+  Train/high: 30000
+  Train/low: 30000
+  Val/high: 3000
+  Val/low: 3000
+  YOLO Annotations/Train/high/Classes: 1
+  YOLO Annotations/Train/high/Labels: 30000
+  YOLO Annotations/Train/low/Classes: 1
+  YOLO Annotations/Train/low/Labels: 30000
+  YOLO Annotations/Val/YOLO Annotations (high)/Classes: 1
+  YOLO Annotations/Val/YOLO Annotations (high)/Labels: 3000
+  YOLO Annotations/Val/YOLO Annotations (low)/Classes: 1
+  YOLO Annotations/Val/YOLO Annotations (low)/Labels: 3000
+
+Image folders:
+  Test: {'images': 1000, 'formats': {'JPEG': 1000}, 'modes': {'RGB': 1000}, 'sizes': {'512x512': 1000}, 'mean_lum': 93.44}
+  Train/high: {'images': 30000, 'formats': {'JPEG': 30000}, 'modes': {'RGB': 30000}, 'sizes': {'512x512': 30000}, 'mean_lum': 151.44}
+  Train/low: {'images': 30000, 'formats': {'JPEG': 30000}, 'modes': {'RGB': 30000}, 'sizes': {'512x512': 30000}, 'mean_lum': 66.14}
+  Val/high: {'images': 3000, 'formats': {'JPEG': 3000}, 'modes': {'RGB': 3000}, 'sizes': {'512x512': 3000}, 'mean_lum': 144.48}
+  Val/low: {'images': 3000, 'formats': {'JPEG': 3000}, 'modes': {'RGB': 3000}, 'sizes': {'512x512': 3000}, 'mean_lum': 62.81}
+
+Mean luminance by folder/level:
+  Test:test: 93.44
+  Train/high:dense: 151.44
+  Train/high:light: 151.44
+  Train/high:moderate: 151.44
+  Train/low:dense: 33.51
+  Train/low:light: 102.22
+  Train/low:moderate: 62.68
+  Val/high:dense: 144.48
+  Val/high:light: 144.48
+  Val/high:moderate: 144.48
+  Val/low:dense: 31.67
+  Val/low:light: 97.27
+  Val/low:moderate: 59.5
+
+Pairing:
+  Train: {'low_files': 30000, 'high_files': 30000, 'pairs': 30000, 'only_low': [], 'only_high': [], 'size_mismatches': [], 'n_size_mismatches': 0, 'low_high_identical_pixels': 0, 'pair_corr_percentiles_1_5_50': [0.994, 0.995, 0.998], 'pair_corr_lowest15': [(0.9885987043380737, 'dense_6270.jpg'), (0.9886590242385864, 'dense_6272.jpg'), (0.9886813163757324, 'dense_6269.jpg'), (0.9889117479324341, 'dense_6267.jpg'), (0.9889371991157532, 'dense_6268.jpg'), (0.9889407157897949, 'dense_6271.jpg'), (0.9890336394309998, 'dense_6275.jpg'), (0.9913799166679382, 'dense_4155.jpg'), (0.9914361834526062, 'dense_4756.jpg'), (0.9914663434028625, 'dense_244.jpg'), (0.9914663434028625, 'dense_98.jpg'), (0.9914849996566772, 'dense_158.jpg'), (0.9914849996566772, 'dense_96.jpg'), (0.991492509841919, 'dense_6265.jpg'), (0.9915859699249268, 'dense_25.jpg')]}
+  Val: {'low_files': 3000, 'high_files': 3000, 'pairs': 3000, 'only_low': [], 'only_high': [], 'size_mismatches': [], 'n_size_mismatches': 0, 'low_high_identical_pixels': 3, 'pair_corr_percentiles_1_5_50': [0.994, 0.995, 0.999], 'pair_corr_lowest15': [(0.0, 'dense_30727.jpg'), (0.0, 'light_30727.jpg'), (0.0, 'moderate_30727.jpg'), (0.9927564859390259, 'dense_30908.jpg'), (0.9929375648498535, 'dense_30516.jpg'), (0.9929517507553101, 'dense_30590.jpg'), (0.9933071732521057, 'dense_30758.jpg'), (0.9933127760887146, 'dense_30658.jpg'), (0.9933855533599854, 'dense_30684.jpg'), (0.9934173226356506, 'dense_30696.jpg'), (0.9934314489364624, 'dense_30671.jpg'), (0.9934929609298706, 'dense_30428.jpg'), (0.9936091303825378, 'dense_30933.jpg'), (0.9936431646347046, 'dense_30903.jpg'), (0.9937592148780823, 'dense_30736.jpg')]}
+  calibration: {'true_pair_corr_p1': 0.994, 'random_nonpair_corr_p99': 0.643, 'random_nonpair_corr_p999': 0.746}
+  alignment_sample_300_best_shift: {'(0, 0)': 300}
+
+Darkness levels share reference: {'Train': {'ids': 10000, 'all_three_high_identical': 10000, 'at_least_two_high_identical': 10000, 'ids_with_identical_low_across_levels': 0}, 'Val': {'ids': 1000, 'all_three_high_identical': 1000, 'at_least_two_high_identical': 1000, 'ids_with_identical_low_across_levels': 1}}
+
+Exact duplicates: {'unique_high_images': 10457, 'high_duplicate_groups_beyond_levels': 543, 'low_duplicate_groups': 1630, 'test_duplicate_groups': [], 'n_test_duplicate_groups': 0, 'cross_split_exact_pixel_groups': {}}
+
+Scene near-duplicates:
+  threshold: 0.95
+  high_high_pairs_ge_thr_by_split: {'Train <-> Train': 6986, 'Val <-> Val': 1029}
+  train_val_examples: []
+  n_train_val_pairs: 0
+  within_split_id_gap_hist_top: {1: 1178, 2: 949, 3: 811, 4: 655, 5: 552, 6: 470, 7: 387, 8: 324, 9: 289, 11: 284}
+  test_best_corr_vs_references_percentiles_50_90_99_max: [0.729, 0.853, 0.906, 0.936]
+  test_images_with_reference_match_ge_thr: 0
+  test_top_matches_vs_references: [(0.936, 'Test/Test_977.jpg', 'Train/high/dense_142.jpg'), (0.933, 'Test/Test_603.jpg', 'Train/high/dense_142.jpg'), (0.93, 'Test/Test_597.jpg', 'Train/high/dense_208.jpg'), (0.927, 'Test/Test_598.jpg', 'Train/high/dense_84.jpg'), (0.925, 'Test/Test_832.jpg', 'Train/high/dense_142.jpg'), (0.924, 'Test/Test_979.jpg', 'Train/high/dense_142.jpg'), (0.921, 'Test/Test_990.jpg', 'Train/high/dense_142.jpg'), (0.919, 'Test/Test_727.jpg', 'Train/high/dense_142.jpg'), (0.915, 'Test/Test_595.jpg', 'Train/high/dense_84.jpg'), (0.913, 'Test/Test_674.jpg', 'Train/high/dense_142.jpg'), (0.906, 'Test/Test_577.jpg', 'Train/high/dense_208.jpg'), (0.905, 'Test/Test_592.jpg', 'Train/high/dense_142.jpg'), (0.904, 'Test/Test_943.jpg', 'Train/high/dense_142.jpg'), (0.904, 'Test/Test_513.jpg', 'Train/high/dense_2015.jpg'), (0.902, 'Test/Test_662.jpg', 'Train/high/dense_142.jpg'), (0.899, 'Test/Test_687.jpg', 'Train/high/dense_2015.jpg'), (0.896, 'Test/Test_604.jpg', 'Train/high/dense_2731.jpg'), (0.893, 'Test/Test_599.jpg', 'Train/high/dense_2534.jpg'), (0.89, 'Test/Test_400.jpg', 'Train/high/dense_208.jpg'), (0.888, 'Test/Test_602.jpg', 'Train/high/dense_142.jpg')]
+  test_top_matches_vs_train_val_lows: [(0.936, 'Test/Test_977.jpg', 'Train/low/light_142.jpg'), (0.932, 'Test/Test_603.jpg', 'Train/low/light_142.jpg'), (0.93, 'Test/Test_597.jpg', 'Train/low/light_208.jpg'), (0.926, 'Test/Test_598.jpg', 'Train/low/light_84.jpg'), (0.924, 'Test/Test_979.jpg', 'Train/low/light_142.jpg'), (0.924, 'Test/Test_832.jpg', 'Train/low/light_142.jpg'), (0.92, 'Test/Test_990.jpg', 'Train/low/light_142.jpg'), (0.918, 'Test/Test_727.jpg', 'Train/low/light_142.jpg'), (0.914, 'Test/Test_595.jpg', 'Train/low/light_142.jpg'), (0.913, 'Test/Test_674.jpg', 'Train/low/light_142.jpg'), (0.907, 'Test/Test_513.jpg', 'Train/low/moderate_2015.jpg'), (0.905, 'Test/Test_592.jpg', 'Train/low/light_142.jpg'), (0.905, 'Test/Test_577.jpg', 'Train/low/light_208.jpg'), (0.904, 'Test/Test_943.jpg', 'Train/low/light_142.jpg'), (0.902, 'Test/Test_604.jpg', 'Train/low/dense_2534.jpg'), (0.901, 'Test/Test_687.jpg', 'Train/low/moderate_2015.jpg'), (0.901, 'Test/Test_662.jpg', 'Train/low/light_142.jpg'), (0.901, 'Test/Test_599.jpg', 'Train/low/dense_2534.jpg'), (0.9, 'Test/Test_889.jpg', 'Val/low/dense_30627.jpg'), (0.896, 'Test/Test_609.jpg', 'Train/low/dense_6644.jpg')]
+
+YOLO annotations:
+  class_files: {'YOLO Annotations/Train/high/Classes/class_names.txt': 80, 'YOLO Annotations/Train/low/Classes/class_names.txt': 80, 'YOLO Annotations/Val/YOLO Annotations (high)/Classes/class_names.txt': 80, 'YOLO Annotations/Val/YOLO Annotations (low)/Classes/class_names.txt': 80}
+  class_files_identical: True
+  n_classes: 80
+  class_names_first10: ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light']
+  label_files: 66000
+  empty_label_files: 957
+  malformed_lines: 0
+  boxes: 609355
+  class_histogram_top15: [('car', 355345), ('person', 105160), ('traffic light', 75659), ('truck', 38899), ('bus', 13647), ('motorcycle', 7860), ('bicycle', 3560), ('potted plant', 1164), ('clock', 1098), ('stop sign', 1033), ('backpack', 849), ('train', 835), ('fire hydrant', 792), ('handbag', 755), ('bench', 683)]
+  low_high_label_files_identical: 393/33000
+  images_without_label: 0
+  labels_without_image: 0
+  test_labels: 0
+
+Cross-dataset:
+  LOL-v1: {'images_compared': 1000, 'byte_identical': 0, 'pixel_identical': 0, 'near_dup_pairs_ge_thr': 0, 'images_with_near_dup': 0, 'max_corr': 0.886, 'top5': [(0.886, 'our485/low/254.png', 'Test/Test_938.jpg'), (0.882, 'our485/high/254.png', 'Test/Test_938.jpg'), (0.862, 'our485/low/116.png', 'Test/Test_110.jpg'), (0.856, 'our485/low/115.png', 'Test/Test_110.jpg'), (0.83, 'our485/high/601.png', 'Test/Test_902.jpg')]}
+  LOL-v2-real: {'images_compared': 1578, 'byte_identical': 0, 'pixel_identical': 0, 'near_dup_pairs_ge_thr': 0, 'images_with_near_dup': 0, 'max_corr': 0.886, 'top5': [(0.886, 'LOL-v2/Real_captured/Train/Low/low00254.png', 'Test/Test_938.jpg'), (0.882, 'LOL-v2/Real_captured/Train/Normal/normal00254.png', 'Test/Test_938.jpg'), (0.862, 'LOL-v2/Real_captured/Train/Low/low00116.png', 'Test/Test_110.jpg'), (0.856, 'LOL-v2/Real_captured/Train/Low/low00115.png', 'Test/Test_110.jpg'), (0.835, 'LOL-v2/Real_captured/Train/Normal/normal00031.png', 'Test/Test_597.jpg')]}
+  LOL-v2-synthetic: {'images_compared': 2000, 'byte_identical': 0, 'pixel_identical': 0, 'near_dup_pairs_ge_thr': 3, 'images_with_near_dup': 3, 'max_corr': 0.956, 'top5': [(0.956, 'LOL-v2/Synthetic/Train/Normal/r1a91c337t.png', 'Test/Test_977.jpg'), (0.955, 'LOL-v2/Synthetic/Train/Low/r0e63dd12t.png', 'Test/Test_824.jpg'), (0.952, 'LOL-v2/Synthetic/Train/Low/r1c1fef8ft.png', 'Test/Test_824.jpg'), (0.948, 'LOL-v2/Synthetic/Train/Low/r015b453ft.png', 'Test/Test_603.jpg'), (0.945, 'LOL-v2/Synthetic/Train/Normal/r015b453ft.png', 'Test/Test_603.jpg')]}
+  SICE: {'images_compared': 5389, 'byte_identical': 0, 'pixel_identical': 0, 'near_dup_pairs_ge_thr': 4, 'images_with_near_dup': 3, 'max_corr': 0.957, 'top5': [(0.957, 'Dataset_Part1.rar:Dataset_Part1/355/9.JPG', 'Test/Test_678.jpg'), (0.952, 'Dataset_Part1.rar:Dataset_Part1/355/1.JPG', 'Test/Test_678.jpg'), (0.951, 'Dataset_Part2.rar:Dataset_Part2/64/7.JPG', 'Test/Test_674.jpg'), (0.949, 'Dataset_Part1.rar:Dataset_Part1/355/7.JPG', 'Test/Test_824.jpg'), (0.949, 'Dataset_Part1.rar:Dataset_Part1/289/8.JPG', 'Test/Test_943.jpg')]}
+
+runtime 451.4 s

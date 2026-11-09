@@ -1,0 +1,65 @@
+SICE structure audit (READ-ONLY, streamed from RAR, nothing extracted)
+======================================================================
+
+Files in data/SICE:
+  Dataset_Part1.rar: 4.16 GB
+  Dataset_Part2.rar: 5.31 GB
+
+Integrity:
+  Dataset_Part1.rar: {'listed_files': 3381, 'streamed_files': 3381, 'sizes_match_listing': 3381, 'uncompressed_bytes': 4302920445, 'bsdtar_exit_code': 0, 'stderr': ''}
+  Dataset_Part2.rar: {'listed_files': 2009, 'streamed_files': 2009, 'sizes_match_listing': 2009, 'uncompressed_bytes': 5381844240, 'bsdtar_exit_code': 0, 'stderr': ''}
+
+Dataset_Part1: 360 sequences, 3021 exposure images, 360 label images
+  exposures/sequence: {3: 13, 4: 8, 5: 46, 6: 3, 7: 90, 8: 6, 9: 140, 10: 25, 12: 1, 13: 3, 14: 2, 15: 3, 17: 4, 18: 2, 19: 10, 20: 1, 21: 1, 27: 1, 28: 1}
+  exposure images: formats {'JPEG': 3021} modes {'RGB': 3021}
+    resolutions: {'4288x2848': 519, '6000x3376': 433, '6000x4000': 254, '5472x3648': 143, '4241x2817': 135, '1920x1080': 129, '3008x2000': 127, '3872x2592': 122, '2848x4288': 117, '4896x3264': 102, '4194x2785': 90, '2048x1536': 76, '1504x1000': 49, '4925x3261': 35, '4211x2797': 27, '4928x3264': 17, '3264x2448': 16, '3888x2592': 15, '4912x3264': 14, '3264x4896': 14, '5616x3744': 14, '3648x2736': 14, '4926x3259': 14, '4926x3260': 14, '1080x1920': 13, '1600x1200': 11, '2448x3264': 10, '6000x3737': 9, '5472x3151': 9, '5722x3815': 9, '5395x3189': 9, '4740x3252': 9, '5381x3217': 9, '2817x4241': 9, '5472x3261': 9, '3631x2287': 9, '6000x3577': 9, '5703x3467': 9, '4916x3130': 9, '5527x3535': 9, '6000x3455': 9, '5982x3512': 9, '6000x3623': 9, '5436x3450': 9, '5472x3213': 9, '5323x3155': 9, '3421x2548': 9, '5997x3726': 9, '5184x3456': 7, '5973x3972': 7, '2288x1712': 7, '2048x1356': 7, '3008x2008': 7, '3715x2491': 7, '2887x2230': 7, '800x1067': 7, '1280x960': 7, '1728x972': 7, '2400x1500': 7, '5132x3059': 7, '4887x3248': 7, '4889x3220': 7, '4916x3255': 7, '4927x3261': 7, '4925x3260': 7, '4924x3260': 7, '4923x3260': 7, '4925x3259': 7, '4918x3234': 7, '4923x3237': 7, '4924x3261': 7, '4000x3000': 7, '4926x3262': 7, '4848x2520': 7, '3467x2145': 7, '6496x4782': 7, '5997x3999': 7, '4714x2383': 7, '3900x2616': 7, '6000x3368': 7, '3264x1952': 7, '5997x3367': 7, '5999x3998': 7, '5999x3999': 7, '5991x3991': 7, '1920x1280': 6, '4926x3261': 5, '5814x3876': 5, '3772x2236': 5, '4204x3073': 5, '2880x2160': 4, '3160x4213': 4, '3000x2250': 4, '3000x1688': 4, '2816x2112': 4, '4272x2848': 3}
+    cameras: {'(none)': 3021}
+  labels: formats {'JPEG': 360} ext {'JPG': 360} modes {'RGB': 360}
+    resolutions: {'6000x3376': 60, '4288x2848': 57, '6000x4000': 23, '1920x1080': 17, '3872x2592': 16, '5472x3648': 16, '4896x3264': 15, '4241x2817': 15, '2848x4288': 13, '4194x2785': 10, '3008x2000': 7, '4925x3261': 5, '1504x1000': 5, '3264x2448': 4, '4928x3264': 3, '3888x2592': 3, '4211x2797': 3, '2048x1536': 3, '2448x3264': 2, '3264x4896': 2, '5616x3744': 2, '3648x2736': 2, '4926x3259': 2, '4926x3260': 2, '1600x1200': 2, '5184x3456': 1, '5973x3972': 1, '6000x3737': 1, '5472x3151': 1, '4912x3264': 1, '2288x1712': 1, '2048x1356': 1, '3008x2008': 1, '3715x2491': 1, '2887x2230': 1, '800x1067': 1, '1280x960': 1, '1728x972': 1, '2400x1500': 1, '5132x3059': 1, '4887x3248': 1, '4889x3220': 1, '4916x3255': 1, '4927x3261': 1, '4926x3261': 1, '4925x3260': 1, '4924x3260': 1, '4923x3260': 1, '4925x3259': 1, '4918x3234': 1, '4923x3237': 1, '4924x3261': 1, '4000x3000': 1, '4926x3262': 1, '5722x3815': 1, '5814x3876': 1, '4848x2520': 1, '4272x2848': 1, '1080x1920': 1, '1920x1280': 1, '5395x3189': 1, '3467x2145': 1, '4740x3252': 1, '5381x3217': 1, '2817x4241': 1, '6496x4782': 1, '2880x2160': 1, '3160x4213': 1, '3000x2250': 1, '5472x3261': 1, '3000x1688': 1, '3631x2287': 1, '5997x3999': 1, '4714x2383': 1, '3900x2616': 1, '6000x3368': 1, '6000x3577': 1, '3264x1952': 1, '2816x2112': 1, '5703x3467': 1, '4916x3130': 1, '5527x3535': 1, '5997x3367': 1, '6000x3455': 1, '3772x2236': 1, '4204x3073': 1, '5999x3998': 1, '5982x3512': 1, '6000x3623': 1, '5436x3450': 1, '5999x3999': 1, '5472x3213': 1, '5323x3155': 1, '3421x2548': 1, '5991x3991': 1, '5997x3726': 1}
+  sequences with mixed resolutions: 0
+  decode errors: []
+
+Dataset_Part2: 229 sequences, 1779 exposure images, 229 label images
+  exposures/sequence: {5: 3, 6: 14, 7: 113, 8: 2, 9: 97}
+  exposure images: formats {'JPEG': 1779} modes {'RGB': 1779}
+    resolutions: {'4032x3024': 916, '5472x3648': 588, '4928x3264': 98, '3648x5472': 63, '3264x2448': 42, '2448x3264': 30, '3936x2608': 7, '3968x2232': 7, '2854x2183': 7, '2448x2448': 7, '4024x2192': 7, '3648x2736': 7}
+    cameras: {'(none)': 1779}
+  labels: formats {'JPEG': 125, 'PNG': 104} ext {'JPG': 124, 'jpg': 1, 'PNG': 104} modes {'RGB': 229}
+    resolutions: {'4032x3024': 97, '5472x3648': 84, '4928x3264': 14, '3648x5472': 9, '3264x2448': 7, '3024x4032': 7, '2448x3264': 5, '3936x2608': 1, '3968x2232': 1, '2854x2183': 1, '2448x2448': 1, '4024x2192': 1, '3648x2736': 1}
+  sequences with mixed resolutions: 0
+  decode errors: []
+
+Ordering checks: {'lum_not_monotonic': 135, 'lum_increasing_with_index': 454}
+EXIF presence: {'no_exposure_time': 4800, 'no_exposure_bias': 4800}
+Top exposure-bias patterns: {'[None, None, None, None, None, None, None, None, None]': 237, '[None, None, None, None, None, None, None]': 203, '[None, None, None, None, None]': 49, '[None, None, None, None, None, None, None, None, None, None]': 25, '[None, None, None, None, None, None]': 17, '[None, None, None]': 13}
+Label size vs sequence: {'label_size_equals_sequence': 582, 'label_size_differs': 7}
+Label mean-luminance rank within sequence (#exposures darker than label / n): {'1/3': 3, '10/13': 1, '10/15': 1, '11/17': 1, '11/19': 1, '12/17': 1, '12/19': 5, '13/17': 1, '13/18': 2, '13/19': 2, '13/20': 1, '14/17': 1, '14/19': 1, '18/28': 1, '19/21': 1, '2/3': 10, '2/4': 5, '2/5': 9, '2/6': 1, '22/27': 1, '3/4': 3, '3/5': 36, '3/6': 6, '3/7': 11, '3/8': 3, '3/9': 2, '4/10': 9, '4/5': 4, '4/6': 9, '4/7': 78, '4/9': 62, '5/10': 14, '5/6': 1, '5/7': 85, '5/8': 2, '5/9': 76, '6/10': 2, '6/7': 29, '6/8': 3, '6/9': 65, '7/12': 1, '7/13': 1, '7/14': 1, '7/9': 22, '8/13': 1, '8/14': 1, '8/15': 2, '8/9': 10, '9/19': 1}
+
+Identical files (byte MD5): 12 groups [['Dataset_Part1/140/3.JPG', 'Dataset_Part1/140/4.JPG'], ['P2:Dataset_Part2/109/5.JPG', 'P2:Dataset_Part2/109/6.JPG'], ['P2:Dataset_Part2/110/5.JPG', 'P2:Dataset_Part2/110/6.JPG'], ['P2:Dataset_Part2/111/5.JPG', 'P2:Dataset_Part2/111/6.JPG'], ['P2:Dataset_Part2/112/5.JPG', 'P2:Dataset_Part2/112/6.JPG']]
+Duplicate-scene sequence pairs (corr >= 0.95; different-sequence p99 = 0.721): 1
+  [(0.9967721700668335, 'Dataset_Part1/189', 'Dataset_Part1/190')]
+Borderline [0.85, 0.95): 178  top [(0.9420846700668335, 'Dataset_Part1/206', 'Dataset_Part1/207'), (0.9418466091156006, 'Dataset_Part1/351', 'Dataset_Part2/12'), (0.9360153079032898, 'Dataset_Part1/351', 'Dataset_Part2/92'), (0.9258301258087158, 'Dataset_Part1/312', 'Dataset_Part2/91'), (0.9258086085319519, 'Dataset_Part1/289', 'Dataset_Part1/351'), (0.9253995418548584, 'Dataset_Part1/192', 'Dataset_Part1/194'), (0.9237552285194397, 'Dataset_Part1/261', 'Dataset_Part1/351'), (0.9237170219421387, 'Dataset_Part1/192', 'Dataset_Part1/328')]
+
+vs LOL byte-identical files: 0
+vs LOL-real: sequences with corr >= 0.95: 0; top [(0.9311061501502991, 'Dataset_Part1/328', 'LOL-v1/our485/high/254.png'), (0.9052214622497559, 'Dataset_Part1/192', 'LOL-v1/our485/high/254.png'), (0.9028065800666809, 'Dataset_Part1/194', 'LOL-v1/our485/high/254.png'), (0.8976031541824341, 'Dataset_Part1/24', 'LOL-v1/our485/high/254.png'), (0.8972655534744263, 'Dataset_Part2/12', 'LOL-v1/our485/high/254.png')]
+vs LOL-v2-synthetic: sequences with corr >= 0.95: 0; top [(0.9414131045341492, 'Dataset_Part1/351', 'LOL-v2/Synthetic/Train/Normal/r12daa983t.png'), (0.9322829842567444, 'Dataset_Part1/355', 'LOL-v2/Synthetic/Train/Normal/r12daa983t.png'), (0.9279435873031616, 'Dataset_Part1/261', 'LOL-v2/Synthetic/Train/Normal/r085a5f53t.png'), (0.9266376495361328, 'Dataset_Part1/193', 'LOL-v2/Synthetic/Train/Normal/r085a5f53t.png'), (0.9262093901634216, 'Dataset_Part2/92', 'LOL-v2/Synthetic/Train/Normal/r12daa983t.png')]
+
+Text files:
+--- Dataset_Part2.rar:testing index.txt
+The testing index in Dataset_part1:
+
+4-23
+28
+31
+33-34
+37-39
+46-52
+55-69
+75-79
+100-103
+
+We choose the -1ev as the low-light input image for the under-exposure testing (if there are 7 images, then it is number 3. if there are 9 images, then it is number 4)
+
+and +1ev as the over-exposure input image for testing  (if there are 7 images, then it is number 5)
+
+runtime 237.8 s

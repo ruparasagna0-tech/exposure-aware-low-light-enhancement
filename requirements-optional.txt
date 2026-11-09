@@ -1,0 +1,5 @@
+# Optional extras
+safetensors          # fast loading of official HVI-CIDNet weights (a dependency-free fallback reader is included)
+huggingface_hub      # convenient download of official weights at pinned revisions
+pyiqa==0.1.16        # NIQE / BRISQUE in the Phase 5 diagnostic. Used on Colab only; install with core packages
+                     # pinned (see notebooks/colab_phase5_diag_*.ipynb, cell 3), because it pulls many dependencies

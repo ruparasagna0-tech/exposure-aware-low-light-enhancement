@@ -1,0 +1,47 @@
+# Baseline: small U-Net + L1 on LOL-v1 only.
+# Reference result before any multi-dataset / generalization work.
+# Relative paths are resolved from the project root (works locally and on Colab).
+
+experiment_name: baseline_lol_v1
+seed: 42                      # global seed (weights init, shuffling, augmentation)
+
+data:
+  root: data/LOL/LOLdataset   # override with --data-root (e.g. a Colab/Drive path)
+  train_split: train          # our485 minus validation -> 450 pairs
+  val_split: val              # fixed 35 pairs from our485
+  test_split: test            # eval15 (final test set, never used for training/selection)
+  val_size: 35
+  split_seed: 42              # seed of the train/val split (keep fixed!)
+  crop_size: 256              # random paired crop for training only
+  hflip: true
+  vflip: false
+
+model:
+  name: baseline_unet
+  in_channels: 3
+  out_channels: 3
+  base_channels: 32
+  depth: 3
+
+loss:
+  name: l1
+
+train:
+  epochs: 50
+  batch_size: 4
+  optimizer: adam
+  learning_rate: 0.0002
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+  num_workers: 2              # Colab default is 2 CPUs; use 0 for debugging
+  device: auto                # auto = cuda > mps > cpu
+  deterministic: true
+  log_every: 25               # print running train loss every N iterations (0 = off)
+
+eval:
+  batch_size: 1               # full-resolution 600x400 images
+
+output:
+  checkpoint_dir: experiments/baseline_lol_v1/checkpoints   # best.pth, last.pth
+  log_dir: experiments/baseline_lol_v1                      # history, run_info, config copy
+  results_dir: results/baseline_lol_v1                      # test outputs, metrics, figures

@@ -1,0 +1,53 @@
+--- third_party_src/DarkIR/archs/DarkIR.py	2026-10-14 03:17:30
++++ third_party/darkir/archs/DarkIR.py	2026-10-14 03:21:19
+@@ -2,8 +2,8 @@
+ import torch.nn as nn
+ import torch.nn.functional as F
+ try:
+-    from arch_model import EBlock, DBlock
+-    from arch_util import CustomSequential
++    from .arch_model import EBlock, DBlock  # [phase3 patch] was: from arch_model
++    from .arch_util import CustomSequential  # [phase3 patch] was: from arch_util
+ except:
+     from archs.arch_model import EBlock, DBlock
+     from .arch_util import CustomSequential
+--- third_party_src/DarkIR/losses/loss.py	2026-10-14 03:17:30
++++ third_party/darkir/losses/loss.py	2026-10-14 03:21:19
+@@ -1,14 +1,15 @@
+ import math
++import os  # [phase3 patch] for PHASE3_VGG_RANDOM_INIT
+ import torch
+ from torch import autograd as autograd
+ from torch import nn as nn
+ from torch.nn import functional as F
+ import torchvision
+-import pytorch_msssim
++# import pytorch_msssim  # [phase3 patch] only used by SSIM_loss, which the DarkIR training loss does not use
+ import numpy as np
+ 
+ # from losses.vgg_arch import VGGFeatureExtractor
+-from losses.loss_utils import weighted_loss
++from .loss_utils import weighted_loss  # [phase3 patch] was: from losses.loss_utils
+ #from basicsr.metrics.lpips.lpips import LPIPS
+ 
+ _reduction_modes = ['none', 'mean', 'sum']
+@@ -318,7 +319,9 @@
+ class VGG19(torch.nn.Module):
+     def __init__(self, requires_grad=False):
+         super().__init__()
+-        vgg_pretrained_features = torchvision.models.vgg19(weights=torchvision.models.VGG19_Weights.IMAGENET1K_V1).features
++        # [phase3 patch] PHASE3_VGG_RANDOM_INIT=1 (CPU unit tests only): same architecture, random weights, no download
++        _w = None if os.environ.get("PHASE3_VGG_RANDOM_INIT") == "1" else torchvision.models.VGG19_Weights.IMAGENET1K_V1
++        vgg_pretrained_features = torchvision.models.vgg19(weights=_w).features
+         self.slice1 = torch.nn.Sequential()
+         self.slice2 = torch.nn.Sequential()
+         self.slice3 = torch.nn.Sequential()
+@@ -351,7 +354,7 @@
+ class VGGLoss(nn.Module):
+     def __init__(self, loss_weight=1.0, criterion = 'l1', reduction='mean'):
+         super(VGGLoss, self).__init__()
+-        self.vgg = VGG19().cuda()
++        self.vgg = VGG19()  # [phase3 patch] was .cuda()
+         if reduction not in ['none', 'mean', 'sum']:
+             raise ValueError(f'Unsupported reduction mode: {reduction}. '
+                              f'Supported ones are: {_reduction_modes}')

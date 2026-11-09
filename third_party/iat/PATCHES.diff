@@ -1,0 +1,44 @@
+--- third_party_src/IAT/IAT_main.py	2026-11-08 18:12:15
++++ third_party/iat/IAT_main.py	2026-11-08 18:12:15
+@@ -5,9 +5,9 @@
+ import os
+ import math
+ 
+-from timm.models.layers import trunc_normal_
+-from model.blocks import CBlock_ln, SwinTransformerBlock
+-from model.global_net import Global_pred
++from ._timm_compat import trunc_normal_  # [phase5 patch]
++from .blocks import CBlock_ln, SwinTransformerBlock
++from .global_net import Global_pred
+ 
+ class Local_pred(nn.Module):
+     def __init__(self, dim=16, number=4, type='ccc'):
+--- third_party_src/IAT/blocks.py	2026-11-08 18:12:15
++++ third_party/iat/blocks.py	2026-11-08 18:12:15
+@@ -7,9 +7,8 @@
+ import torch.nn as nn
+ from functools import partial
+ import math
+-from timm.models.vision_transformer import VisionTransformer, _cfg
+-from timm.models.registry import register_model
+-from timm.models.layers import trunc_normal_, DropPath, to_2tuple
++# [phase5 patch] timm imports replaced; VisionTransformer/_cfg/register_model were unused
++from ._timm_compat import trunc_normal_, DropPath, to_2tuple
+ 
+ # ResMLP's normalization
+ class Aff(nn.Module):
+--- third_party_src/IAT/global_net.py	2026-11-08 18:12:15
++++ third_party/iat/global_net.py	2026-11-08 18:12:15
+@@ -1,9 +1,9 @@
+-import imp
++# [phase5 patch] 'import imp' removed (unused; module removed in Python 3.12)
+ import torch
+ import torch.nn as nn
+-from timm.models.layers import trunc_normal_, DropPath, to_2tuple
++from ._timm_compat import trunc_normal_, DropPath, to_2tuple  # [phase5 patch] no timm dependency
+ import os
+-from model.blocks import Mlp
++from .blocks import Mlp
+ 
+ 
+ class query_Attention(nn.Module):
